@@ -1,0 +1,214 @@
+<!doctype html>
+<html lang="en-US">
+    <head>
+        <meta charset="UTF-8">
+        <title>Battleship</title>
+        <style>
+            body {
+                background-color: black;
+            }
+
+            div#board {
+                position: relative;
+                width: 100%;
+                height: 100%;
+                margin: auto;
+            }
+
+            div#background {
+                width: 787px;
+                height: 540px;  
+                margin: auto;
+                background: url("images/oldMonitor.png") no-repeat;
+                background-size:contain;
+            }
+
+            #tv, #radarDisplay {
+                color: white;
+            }
+
+            #tv {
+                position: absolute;
+                bottom: 20px;
+                left: 0px;
+            }
+
+            #radarDisplay {
+                position: absolute;
+                bottom: 0px;
+                left: 0px;
+            }
+
+            table {
+                position: absolute;
+                top: 166.5px;
+                left: 412.5px;
+                border-collapse: collapse;
+                //border: 1px solid white;
+            }
+
+            td {
+                width: 32.5px;
+                height: 33.5px;
+                padding: 1px;
+                //border: 1px solid red;
+            }
+
+            td.board {
+                border: 1px solid rgb(83, 175, 19);
+                //border: 1px solid white;
+               // width: 40px;
+               //height: 40px;
+               // padding: 2px;
+            }
+
+            td.boardHeaders {
+                color: rgb(83, 175, 19);
+                font-size: 25px;
+                text-align: center;
+                vertical-align: auto;
+            }
+
+            .photoCredits a {
+                text-decoration: none;
+                color: white;
+            }
+
+            .hit {
+                background: url(images/ship.png) no-repeat center center;
+                background-size: contain;
+                border: 1px solid rgb(83, 175, 19);
+            }
+
+            .miss {
+                background: url(images/miss.png) no-repeat center center;
+                background-size: contain;
+                border: 1px solid rgb(83, 175, 19);
+            }
+
+            div#messageArea {
+                position: absolute;
+                top: 0px;
+                left: 0px;
+                font-size: 40px;
+                color: rgb(83, 175, 19);
+            }
+
+            form {
+                position: absolute;
+                bottom: 0px;
+                right: 0px;
+                padding: 20px;
+                background-color: rgb(83, 175, 19);
+            }
+
+            form input {
+                background-color: rgb(152, 207, 113);
+                border-color: rgb(83, 175, 19);
+                font-size: 1em;
+            }
+    
+
+        </style>
+    </head>
+    <body>
+        <div id="boardContainer">
+            <div id="messageArea">VALENDO!</div>
+            <div id="background">
+                <div id="tv" class="photoCredits">TV photo by <a href="https://unsplash.com/@chavalnino?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Alberto Contreras</a> on <a href="https://unsplash.com/s/photos/television?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Unsplash</a>
+                </div>
+                <div id="radarDisplay" class="photoCredits"><a href='https://pt.pngtree.com/so/vetor'>Radar display by pt.pngtree.com</a>
+                </div>
+                <table>
+                    <tr>
+                        <td id="A" class="boardHeaders">A</td>
+                        <td id="00" class="board"></td>
+                        <td id="01" class="board"></td>
+                        <td id="02" class="board"></td>
+                        <td id="03" class="board"></td>
+                        <td id="04" class="board"></td>
+                        <td id="05" class="board"></td>
+                        <td id="06" class="board"></td>
+                    </tr>
+                    <tr>
+                        <td id="B" class="boardHeaders">B</td>
+                        <td id="10" class="board"></td>
+                        <td id="11" class="board"></td>
+                        <td id="12" class="board"></td>
+                        <td id="13" class="board"></td>
+                        <td id="14" class="board"></td>
+                        <td id="15" class="board"></td>
+                        <td id="16" class="board"></td>
+                    </tr>
+                    <tr>
+                        <td id="C" class="boardHeaders">C</td>
+                        <td id="20" class="board"></td>
+                        <td id="21" class="board"></td>
+                        <td id="22" class="board"></td>
+                        <td id="23" class="board"></td>
+                        <td id="24" class="board"></td>
+                        <td id="25" class="board"></td>
+                        <td id="26" class="board"></td>
+                    </tr>
+                    <tr>
+                        <td id="D" class="boardHeaders">D</td>
+                        <td id="30" class="board"></td>
+                        <td id="31" class="board"></td>
+                        <td id="32" class="board"></td>
+                        <td id="33" class="board"></td>
+                        <td id="34" class="board"></td>
+                        <td id="35" class="board"></td>
+                        <td id="36" class="board"></td>
+                    </tr>
+                    <tr>
+                        <td id="E" class="boardHeaders">E</td>
+                        <td id="40" class="board"></td>
+                        <td id="41" class="board"></td>
+                        <td id="42" class="board"></td>
+                        <td id="43" class="board"></td>
+                        <td id="44" class="board"></td>
+                        <td id="45" class="board"></td>
+                        <td id="46" class="board"></td>
+                    </tr>
+                    <tr>
+                        <td id="F" class="boardHeaders">F</td>
+                        <td id="50" class="board"></td>
+                        <td id="51" class="board"></td>
+                        <td id="52" class="board"></td>
+                        <td id="53" class="board"></td>
+                        <td id="54" class="board"></td>
+                        <td id="55" class="board"></td>
+                        <td id="56" class="board"></td>
+                    </tr>
+                    <tr>
+                        <td id="G" class="boardHeaders">G</td>
+                        <td id="60" class="board"></td>
+                        <td id="61" class="board"></td>
+                        <td id="62" class="board"></td>
+                        <td id="63" class="board"></td>
+                        <td id="64" class="board"></td>
+                        <td id="65" class="board"></td>
+                        <td id="66" class="board"></td>
+                    </tr>
+                    <tr>
+                        <td class="boardHeaders"></td>
+                        <td id="0" class="boardHeaders">0</td>
+                        <td id="1" class="boardHeaders">1</td>
+                        <td id="2" class="boardHeaders">2</td>
+                        <td id="3" class="boardHeaders">3</td>
+                        <td id="4" class="boardHeaders">4</td>
+                        <td id="5" class="boardHeaders">5</td>
+                        <td id="6" class="boardHeaders">6</td>
+                    </tr>
+                </table>
+            </div>
+            <form>
+                <input type="text" id="guessInput" placeholder="A0">
+                <input type="button" id="fireButton" value="FIRE!">
+            </form>
+        </div>
+
+        <script src="battleship.js"></script>
+           
+    </body>
+</html>
